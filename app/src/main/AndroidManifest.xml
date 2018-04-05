@@ -14,11 +14,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name="com.hrily.artutorial.model3D.view.MenuActivity"
+            android:label="@string/title_activity_menu"
+             >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.hrily.artutorial.model3D.view.DemoActivity"
+            android:label="@string/title_activity_menu"
+             >
+        </activity>
+        <activity
+            android:name="com.hrily.artutorial.util.view.TextActivity"
+            android:label="@string/title_activity_text"
+             >
+        </activity>
+        <activity
+            android:name="com.hrily.artutorial.model3D.view.ModelActivity"
+            android:label="@string/title_activity_model"
+             >
+
+            <!-- android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" -->
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.hrily.artutorial;
+package com.hrily.artutorial.model3D.view;
 
 import android.content.Context;
 import android.location.Location;
@@ -7,14 +7,16 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Players;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.hrily.artutorial.OnLocationChangedListener;
 
 /**
  * Created by krzysztofjackowski on 24/09/15.
  */
-public class MyCurrentLocation implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MyCurrentLocation implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener,OnLocationChangedListener {
 
     private GoogleApiClient mGoogleApiClient;
     private Location mLastLocation;
@@ -23,6 +25,10 @@ public class MyCurrentLocation implements GoogleApiClient.ConnectionCallbacks, G
 
     public MyCurrentLocation(OnLocationChangedListener onLocationChangedListener) {
         this.onLocationChangedListener = onLocationChangedListener;
+    }
+
+    public MyCurrentLocation() {
+
     }
 
     protected synchronized void buildGoogleApiClient(Context context) {
@@ -72,5 +78,16 @@ public class MyCurrentLocation implements GoogleApiClient.ConnectionCallbacks, G
         if (mLastLocation != null) {
             onLocationChangedListener.onLocationChanged(mLastLocation);
         }
+    }
+
+    public Location getLocation(Context context)
+    {
+        mGoogleApiClient = new GoogleApiClient.Builder(context)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        return LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
     }
 }

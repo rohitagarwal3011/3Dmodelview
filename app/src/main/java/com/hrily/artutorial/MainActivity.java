@@ -1,16 +1,11 @@
 package com.hrily.artutorial;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
-import android.graphics.Point;
 import android.hardware.Camera;
 import android.location.Location;
-import android.support.annotation.Size;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,7 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.hrily.artutorial.model3D.view.MyCurrentLocation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -131,6 +127,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     @Override
+    public Location getLocation(Context context) {
+        return null;
+    }
+
+
+    @Override
     public void onAzimuthChanged(float azimuthChangedFrom, float azimuthChangedTo) {
         // Function to handle Change in azimuth angle
         mAzimuthReal = azimuthChangedTo;
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private void setupListeners() {
         myCurrentLocation = new MyCurrentLocation(this);
-        myCurrentLocation.buildGoogleApiClient(this);
+       // myCurrentLocation.buildGoogleApiClient(this);
         myCurrentLocation.start();
 
         myCurrentAzimuth = new MyCurrentAzimuth(this, this);
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     private void setupLayout() {
-        descriptionTextView = (TextView) findViewById(R.id.cameraTextView);
+        //descriptionTextView = (TextView) findViewById(R.id.cameraTextView);
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.cameraview);

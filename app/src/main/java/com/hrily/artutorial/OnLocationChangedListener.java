@@ -1,5 +1,6 @@
 package com.hrily.artutorial;
 
+import android.content.Context;
 import android.location.Location;
 
 /**
@@ -7,4 +8,5 @@ import android.location.Location;
  */
 public interface OnLocationChangedListener {
     void onLocationChanged(Location currentLocation);
+    Location getLocation(Context context);
 }
